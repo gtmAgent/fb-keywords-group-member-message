@@ -1,0 +1,16 @@
+{
+  "format": "xport-github-project",
+  "formatVersion": 1,
+  "kind": "workflow",
+  "exportedAt": 1793089652,
+  "workflow": {
+    "cmd": "fb-keywords-group-member-message",
+    "name": "FB采集关键词成员+私信",
+    "allowedAutomationCmds": [
+      "fb-auto-check",
+      "fb-auto-message",
+      "fb-group-member",
+      "fb-group-search"
+    ]
+  }
+}

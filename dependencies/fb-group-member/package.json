@@ -1,0 +1,439 @@
+{
+  "name": "fb-group-member",
+  "version": "1.0.6",
+  "private": true,
+  "type": "module",
+  "displayName": {
+    "en_US": "Facebook小组成员采集",
+    "de_DE": "Facebook小组成员采集",
+    "es_ES": "Facebook小组成员采集",
+    "fr_FR": "Facebook小组成员采集",
+    "id_ID": "Facebook小组成员采集",
+    "ja_JP": "Facebook小组成员采集",
+    "ko_KR": "Facebook小组成员采集",
+    "ms_MY": "Facebook小组成员采集",
+    "pt_BR": "Facebook小组成员采集",
+    "ru_RU": "Facebook小组成员采集",
+    "th_TH": "Facebook小组成员采集",
+    "vi_VN": "Facebook小组成员采集",
+    "zh_CN": "Facebook小组成员采集",
+    "zh_TW": "Facebook小组成员采集"
+  },
+  "description": {
+    "en_US": "Open a Facebook group members page, scroll, and collect member profile URLs, names, and join times up to a limit.",
+    "zh_CN": "打开 Facebook 小组成员页，滚动采集成员主页地址、名称与加入时间，达到上限后结束。",
+    "zh_TW": "開啟 Facebook 小組成員頁，滾動採集成員主頁網址、名稱與加入時間，達上限後結束。",
+    "ja_JP": "Facebookグループのメンバーページを開き、スクロールしてプロフィールURL・名前・参加時期を上限まで収集します。",
+    "ko_KR": "Facebook 그룹 멤버 페이지를 열고 스크롤하며 프로필 URL, 이름, 가입 시간을 한도까지 수집합니다.",
+    "th_TH": "เปิดหน้าสมาชิกกลุ่ม Facebook เลื่อนหน้าและเก็บ URL โปรไฟล์ ชื่อ และเวลาเข้าร่วมจนถึงจำนวนสูงสุด",
+    "id_ID": "Buka halaman anggota grup Facebook, gulir, dan kumpulkan URL profil, nama, serta waktu bergabung hingga batas.",
+    "ms_MY": "Buka halaman ahli kumpulan Facebook, tatal, dan kumpul URL profil, nama serta masa sertai sehingga had.",
+    "vi_VN": "Mở trang thành viên nhóm Facebook, cuộn và thu thập URL hồ sơ, tên và thời gian tham gia đến giới hạn.",
+    "de_DE": "Öffnet die Mitgliederseite einer Facebook-Gruppe, scrollt und erfasst Profil-URLs, Namen und Beitrittszeiten bis zum Limit.",
+    "es_ES": "Abre la página de miembros de un grupo de Facebook, desplaza y recopila URL de perfil, nombres y fechas de ingreso hasta el límite.",
+    "pt_BR": "Abre a página de membros de um grupo do Facebook, rola e coleta URLs de perfil, nomes e horários de entrada até o limite.",
+    "fr_FR": "Ouvre la page des membres d’un groupe Facebook, fait défiler et collecte URL de profil, noms et dates d’adhésion jusqu’à la limite.",
+    "ru_RU": "Открывает страницу участников группы Facebook, прокручивает и собирает URL профилей, имена и время вступления до лимита."
+  },
+  "main": "./main.ts",
+  "dependencies": {
+    "xport-browser-sdk": "file:../xport_browser_sdk"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "devDependencies": {
+    "bun-types": "^1.3.14"
+  },
+  "xportAutomation": {
+    "taskGroupConfig": [
+      {
+        "title": {
+          "en_US": "Targets / devices",
+          "zh_CN": "目标与设备",
+          "zh_TW": "目標與裝置",
+          "ja_JP": "対象/デバイス",
+          "ko_KR": "대상/기기",
+          "th_TH": "เป้าหมาย/อุปกรณ์",
+          "id_ID": "Target/perangkat",
+          "ms_MY": "Sasaran/peranti",
+          "vi_VN": "Mục tiêu/thiết bị",
+          "de_DE": "Ziele/Geräte",
+          "es_ES": "Objetivos/dispositivos",
+          "pt_BR": "Alvos/dispositivos",
+          "fr_FR": "Cibles/appareils",
+          "ru_RU": "Цели/устройства"
+        },
+        "fields": [
+          {
+            "key": "hosts",
+            "type": "text",
+            "label": {
+              "en_US": "Facebook group URLs",
+              "zh_CN": "Facebook 小组主页地址",
+              "zh_TW": "Facebook 小組主頁網址",
+              "ja_JP": "FacebookグループURL",
+              "ko_KR": "Facebook 그룹 URL",
+              "th_TH": "URL กลุ่ม Facebook",
+              "id_ID": "URL grup Facebook",
+              "ms_MY": "URL kumpulan Facebook",
+              "vi_VN": "URL nhóm Facebook",
+              "de_DE": "Facebook-Gruppen-URLs",
+              "es_ES": "URL de grupos de Facebook",
+              "pt_BR": "URLs de grupos do Facebook",
+              "fr_FR": "URL de groupes Facebook",
+              "ru_RU": "URL групп Facebook"
+            },
+            "hint": {
+              "en_US": "One group URL per line; evenly split across selected browsers",
+              "zh_CN": "支持多行，每一行一个小组；将按数量平均分配到所选浏览器",
+              "zh_TW": "支援多行，每一行一個小組；將按數量平均分配到所選瀏覽器",
+              "ja_JP": "1行に1グループURL。選択ブラウザへ均等割り当て",
+              "ko_KR": "한 줄에 그룹 URL 하나. 선택한 브라우저에 균등 배분",
+              "th_TH": "หนึ่ง URL ต่อบรรทัด แบ่งเท่าๆ กันไปยังเบราว์เซอร์ที่เลือก",
+              "id_ID": "Satu URL grup per baris; dibagi rata ke browser terpilih",
+              "ms_MY": "Satu URL kumpulan setiap baris; dibahagi rata kepada pelayar dipilih",
+              "vi_VN": "Mỗi dòng một URL nhóm; chia đều cho các trình duyệt đã chọn",
+              "de_DE": "Eine Gruppen-URL pro Zeile; gleichmäßig auf gewählte Browser",
+              "es_ES": "Una URL de grupo por línea; repartidas por igual entre navegadores",
+              "pt_BR": "Uma URL de grupo por linha; divididas igualmente entre navegadores",
+              "fr_FR": "Une URL de groupe par ligne ; réparties équitablement sur les navigateurs",
+              "ru_RU": "По одному URL группы в строке; равномерно по выбранным браузерам"
+            },
+            "multiline": true,
+            "maxLines": 4,
+            "defaultValue": ""
+          },
+          {
+            "key": "max_count",
+            "type": "text",
+            "label": {
+              "en_US": "Max members per group",
+              "zh_CN": "每个小组最大采集数量",
+              "zh_TW": "每個小組最大採集數量",
+              "ja_JP": "グループあたり最大収集数",
+              "ko_KR": "그룹당 최대 수집 수",
+              "th_TH": "จำนวนสมาชิกสูงสุดต่อกลุ่ม",
+              "id_ID": "Maks anggota per grup",
+              "ms_MY": "Maks ahli setiap kumpulan",
+              "vi_VN": "Số thành viên tối đa mỗi nhóm",
+              "de_DE": "Max. Mitglieder pro Gruppe",
+              "es_ES": "Máx. de miembros por grupo",
+              "pt_BR": "Máx. de membros por grupo",
+              "fr_FR": "Nombre max. de membres par groupe",
+              "ru_RU": "Макс. участников на группу"
+            },
+            "hint": {
+              "en_US": "Applied to every sub-task (default 50)",
+              "zh_CN": "应用于每条子任务（默认 50）",
+              "zh_TW": "套用到每條子任務（預設 50）",
+              "ja_JP": "各サブタスクに適用（既定50）",
+              "ko_KR": "모든 하위 작업에 적용(기본 50)",
+              "th_TH": "ใช้กับทุกงานย่อย (ค่าเริ่ม 50)",
+              "id_ID": "Berlaku untuk setiap subtugas (default 50)",
+              "ms_MY": "Digunakan untuk setiap subtugas (lalai 50)",
+              "vi_VN": "Áp dụng cho mỗi nhiệm vụ con (mặc định 50)",
+              "de_DE": "Gilt für jede Unteraufgabe (Standard 50)",
+              "es_ES": "Se aplica a cada subtarea (predeterminado 50)",
+              "pt_BR": "Aplicado a cada subtarefa (padrão 50)",
+              "fr_FR": "Appliqué à chaque sous-tâche (défaut 50)",
+              "ru_RU": "Для каждой подзадачи (по умолчанию 50)"
+            },
+            "inputType": "number",
+            "defaultValue": 50
+          },
+          {
+            "key": "browsers",
+            "type": "browser",
+            "label": {
+              "en_US": "Browsers",
+              "zh_CN": "浏览器",
+              "zh_TW": "瀏覽器",
+              "ja_JP": "ブラウザ",
+              "ko_KR": "브라우저",
+              "th_TH": "เบราว์เซอร์",
+              "id_ID": "Browser",
+              "ms_MY": "Pelayar",
+              "vi_VN": "Trình duyệt",
+              "de_DE": "Browser",
+              "es_ES": "Navegadores",
+              "pt_BR": "Navegadores",
+              "fr_FR": "Navigateurs",
+              "ru_RU": "Браузеры"
+            },
+            "hint": {
+              "en_US": "Group URLs are split evenly across these browsers (e.g. 100÷5≈20 each)",
+              "zh_CN": "小组地址会平均分给这些浏览器（如 100 个÷5 台≈各 20 个），创建后尽快执行",
+              "zh_TW": "小組網址會平均分給這些瀏覽器（如 100 個÷5 台≈各 20 個），建立後盡快執行",
+              "ja_JP": "グループURLを選択ブラウザへ均等割当（例:100÷5≈各20）。即時実行",
+              "ko_KR": "그룹 URL을 선택한 브라우저에 균등 배분(예: 100÷5≈각 20). 즉시 실행",
+              "th_TH": "แบ่ง URL กลุ่มเท่าๆ กัน (เช่น 100÷5≈เครื่องละ 20) แล้วรันเร็วที่สุด",
+              "id_ID": "URL grup dibagi rata (mis. 100÷5≈20 masing-masing), jalankan segera",
+              "ms_MY": "URL kumpulan dibahagi rata (cth. 100÷5≈20 setiap satu), jalankan segera",
+              "vi_VN": "Chia đều URL nhóm (vd. 100÷5≈20 mỗi máy), chạy ngay",
+              "de_DE": "Gruppen-URLs gleichmäßig (z. B. 100÷5≈20 je Browser), sofort starten",
+              "es_ES": "URL repartidas por igual (p. ej. 100÷5≈20 c/u); ejecución inmediata",
+              "pt_BR": "URLs divididas igualmente (ex.: 100÷5≈20 cada); execução imediata",
+              "fr_FR": "URL réparties équitablement (ex. 100÷5≈20 chacune) ; exécution immédiate",
+              "ru_RU": "URL делятся поровну (напр. 100÷5≈по 20); запуск сразу"
+            },
+            "single": false,
+            "platform": "facebook",
+            "defaultValue": []
+          }
+        ]
+      }
+    ],
+    "taskRunConfig": [
+      {
+        "title": {
+          "en_US": "Target group",
+          "zh_CN": "目标小组",
+          "zh_TW": "目標小組",
+          "ja_JP": "対象グループ",
+          "ko_KR": "대상 그룹",
+          "th_TH": "กลุ่มเป้าหมาย",
+          "id_ID": "Grup target",
+          "ms_MY": "Kumpulan sasaran",
+          "vi_VN": "Nhóm đích",
+          "de_DE": "Zielgruppe",
+          "es_ES": "Grupo de destino",
+          "pt_BR": "Grupo alvo",
+          "fr_FR": "Groupe cible",
+          "ru_RU": "Целевая группа"
+        },
+        "fields": [
+          {
+            "key": "host",
+            "type": "text",
+            "label": {
+              "en_US": "Facebook group URL",
+              "zh_CN": "Facebook 小组主页地址",
+              "zh_TW": "Facebook 小組主頁網址",
+              "ja_JP": "FacebookグループURL",
+              "ko_KR": "Facebook 그룹 URL",
+              "th_TH": "URL กลุ่ม Facebook",
+              "id_ID": "URL grup Facebook",
+              "ms_MY": "URL kumpulan Facebook",
+              "vi_VN": "URL nhóm Facebook",
+              "de_DE": "Facebook-Gruppen-URL",
+              "es_ES": "URL del grupo de Facebook",
+              "pt_BR": "URL do grupo do Facebook",
+              "fr_FR": "URL du groupe Facebook",
+              "ru_RU": "URL группы Facebook"
+            },
+            "hint": {
+              "en_US": "Group home or /members URL",
+              "zh_CN": "可填小组首页或 /members 成员页地址",
+              "zh_TW": "可填小組首頁或 /members 成員頁網址",
+              "ja_JP": "グループホームまたは /members URL",
+              "ko_KR": "그룹 홈 또는 /members URL",
+              "th_TH": "URL หน้ากลุ่มหรือ /members",
+              "id_ID": "URL beranda grup atau /members",
+              "ms_MY": "URL laman kumpulan atau /members",
+              "vi_VN": "URL trang nhóm hoặc /members",
+              "de_DE": "Gruppenstartseite oder /members-URL",
+              "es_ES": "Inicio del grupo o URL /members",
+              "pt_BR": "Página do grupo ou URL /members",
+              "fr_FR": "Accueil du groupe ou URL /members",
+              "ru_RU": "Главная группы или URL /members"
+            },
+            "defaultValue": ""
+          },
+          {
+            "key": "max_count",
+            "type": "text",
+            "label": {
+              "en_US": "Max members to collect",
+              "zh_CN": "最大采集数量",
+              "zh_TW": "最大採集數量",
+              "ja_JP": "最大収集数",
+              "ko_KR": "최대 수집 수",
+              "th_TH": "จำนวนสมาชิกสูงสุด",
+              "id_ID": "Jumlah anggota maks",
+              "ms_MY": "Bilangan ahli maks",
+              "vi_VN": "Số thành viên tối đa",
+              "de_DE": "Max. zu erfassende Mitglieder",
+              "es_ES": "Máx. de miembros a recopilar",
+              "pt_BR": "Máx. de membros a coletar",
+              "fr_FR": "Nombre max. de membres à collecter",
+              "ru_RU": "Макс. число участников"
+            },
+            "hint": {
+              "en_US": "Stop after this many recent members (default 50)",
+              "zh_CN": "达到该数量后停止（默认 50，优先最近加入）",
+              "zh_TW": "達此數量後停止（預設 50，優先最近加入）",
+              "ja_JP": "この件数で停止（既定50・最近参加優先）",
+              "ko_KR": "이 수에 도달하면 중단(기본 50, 최근 가입 우선)",
+              "th_TH": "หยุดเมื่อครบจำนวน (ค่าเริ่ม 50)",
+              "id_ID": "Berhenti setelah sejumlah ini (default 50)",
+              "ms_MY": "Berhenti selepas bilangan ini (lalai 50)",
+              "vi_VN": "Dừng sau số lượng này (mặc định 50)",
+              "de_DE": "Stopp nach dieser Anzahl (Standard 50)",
+              "es_ES": "Detener tras esta cantidad (predeterminado 50)",
+              "pt_BR": "Parar após esta quantidade (padrão 50)",
+              "fr_FR": "Arrêter après ce nombre (défaut 50)",
+              "ru_RU": "Остановиться после этого числа (по умолчанию 50)"
+            },
+            "inputType": "number",
+            "defaultValue": 50
+          }
+        ]
+      }
+    ],
+    "taskResultConfig": [
+      {
+        "title": {
+          "en_US": "Run result",
+          "zh_CN": "执行结果",
+          "zh_TW": "執行結果",
+          "ja_JP": "実行結果",
+          "ko_KR": "실행 결과",
+          "th_TH": "ผลการรัน",
+          "id_ID": "Hasil eksekusi",
+          "ms_MY": "Hasil larian",
+          "vi_VN": "Kết quả chạy",
+          "de_DE": "Ausführungsergebnis",
+          "es_ES": "Resultado de ejecución",
+          "pt_BR": "Resultado da execução",
+          "fr_FR": "Résultat d'exécution",
+          "ru_RU": "Результат выполнения"
+        },
+        "fields": [
+          {
+            "key": "host",
+            "type": "text",
+            "label": {
+              "en_US": "Target group",
+              "zh_CN": "目标小组",
+              "zh_TW": "目標小組",
+              "ja_JP": "対象グループ",
+              "ko_KR": "대상 그룹",
+              "th_TH": "กลุ่มเป้าหมาย",
+              "id_ID": "Grup target",
+              "ms_MY": "Kumpulan sasaran",
+              "vi_VN": "Nhóm đích",
+              "de_DE": "Zielgruppe",
+              "es_ES": "Grupo de destino",
+              "pt_BR": "Grupo alvo",
+              "fr_FR": "Groupe cible",
+              "ru_RU": "Целевая группа"
+            }
+          },
+          {
+            "key": "collected_count",
+            "type": "stat",
+            "label": {
+              "en_US": "Members collected",
+              "zh_CN": "采集人数",
+              "zh_TW": "採集人數",
+              "ja_JP": "収集人数",
+              "ko_KR": "수집 인원",
+              "th_TH": "จำนวนที่เก็บได้",
+              "id_ID": "Anggota terkumpul",
+              "ms_MY": "Ahli dikumpul",
+              "vi_VN": "Số thành viên đã thu",
+              "de_DE": "Erfasste Mitglieder",
+              "es_ES": "Miembros recopilados",
+              "pt_BR": "Membros coletados",
+              "fr_FR": "Membres collectés",
+              "ru_RU": "Собрано участников"
+            }
+          },
+          {
+            "key": "final_url",
+            "type": "text",
+            "label": {
+              "en_US": "Final members page URL",
+              "zh_CN": "成员页最终 URL",
+              "zh_TW": "成員頁最終 URL",
+              "ja_JP": "最終メンバーページURL",
+              "ko_KR": "최종 멤버 페이지 URL",
+              "th_TH": "URL หน้าสมาชิกสุดท้าย",
+              "id_ID": "URL akhir halaman anggota",
+              "ms_MY": "URL akhir halaman ahli",
+              "vi_VN": "URL trang thành viên cuối",
+              "de_DE": "Endgültige Mitgliederseiten-URL",
+              "es_ES": "URL final de la página de miembros",
+              "pt_BR": "URL final da página de membros",
+              "fr_FR": "URL finale de la page des membres",
+              "ru_RU": "Итоговый URL страницы участников"
+            }
+          }
+        ]
+      }
+    ],
+    "scriptAi": {
+      "enabled": false,
+      "purpose": "",
+      "deviceMcp": {
+        "enabled": false,
+        "purpose": ""
+      }
+    },
+    "intermediateDataSchema": {
+      "fields": [
+        {
+          "key": "member_name",
+          "type": "text",
+          "label": {
+            "en_US": "Member name",
+            "zh_CN": "用户名称",
+            "zh_TW": "使用者名稱",
+            "ja_JP": "メンバー名",
+            "ko_KR": "멤버 이름",
+            "th_TH": "ชื่อสมาชิก",
+            "id_ID": "Nama anggota",
+            "ms_MY": "Nama ahli",
+            "vi_VN": "Tên thành viên",
+            "de_DE": "Mitgliedsname",
+            "es_ES": "Nombre del miembro",
+            "pt_BR": "Nome do membro",
+            "fr_FR": "Nom du membre",
+            "ru_RU": "Имя участника"
+          }
+        },
+        {
+          "key": "member_url",
+          "type": "text",
+          "label": {
+            "en_US": "Member profile URL",
+            "zh_CN": "用户主页地址",
+            "zh_TW": "使用者主頁網址",
+            "ja_JP": "プロフィールURL",
+            "ko_KR": "프로필 URL",
+            "th_TH": "URL โปรไฟล์สมาชิก",
+            "id_ID": "URL profil anggota",
+            "ms_MY": "URL profil ahli",
+            "vi_VN": "URL hồ sơ thành viên",
+            "de_DE": "Profil-URL des Mitglieds",
+            "es_ES": "URL del perfil del miembro",
+            "pt_BR": "URL do perfil do membro",
+            "fr_FR": "URL du profil du membre",
+            "ru_RU": "URL профиля участника"
+          }
+        },
+        {
+          "key": "joined_at",
+          "type": "text",
+          "label": {
+            "en_US": "Joined time",
+            "zh_CN": "最近加入时间",
+            "zh_TW": "最近加入時間",
+            "ja_JP": "参加時期",
+            "ko_KR": "가입 시간",
+            "th_TH": "เวลาที่เข้าร่วม",
+            "id_ID": "Waktu bergabung",
+            "ms_MY": "Masa sertai",
+            "vi_VN": "Thời gian tham gia",
+            "de_DE": "Beitrittszeit",
+            "es_ES": "Fecha de ingreso",
+            "pt_BR": "Horário de entrada",
+            "fr_FR": "Date d'adhésion",
+            "ru_RU": "Время вступления"
+          }
+        }
+      ]
+    }
+  }
+}

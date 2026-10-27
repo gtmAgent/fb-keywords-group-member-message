@@ -1,0 +1,691 @@
+{
+  "name": "fb-group-search",
+  "version": "1.0.5",
+  "private": true,
+  "type": "module",
+  "displayName": {
+    "en_US": "Facebook小组采集",
+    "de_DE": "Facebook小组采集",
+    "es_ES": "Facebook小组采集",
+    "fr_FR": "Facebook小组采集",
+    "id_ID": "Facebook小组采集",
+    "ja_JP": "Facebook小组采集",
+    "ko_KR": "Facebook小组采集",
+    "ms_MY": "Facebook小组采集",
+    "pt_BR": "Facebook小组采集",
+    "ru_RU": "Facebook小组采集",
+    "th_TH": "Facebook小组采集",
+    "vi_VN": "Facebook小组采集",
+    "zh_CN": "Facebook小组采集",
+    "zh_TW": "Facebook小组采集"
+  },
+  "description": {
+    "en_US": "Search Facebook groups by keyword and collect group profile URLs.",
+    "zh_CN": "按关键词搜索 Facebook 小组并采集小组主页地址。",
+    "zh_TW": "依關鍵字搜尋 Facebook 小組並採集小組主頁網址。",
+    "ja_JP": "キーワードで Facebook グループを検索し、グループのプロフィール URL を収集します。",
+    "ko_KR": "키워드로 Facebook 그룹을 검색하고 그룹 프로필 URL을 수집합니다.",
+    "th_TH": "ค้นหากลุ่ม Facebook ด้วยคำค้นและเก็บ URL โปรไฟล์กลุ่ม",
+    "id_ID": "Cari grup Facebook dengan kata kunci dan kumpulkan URL profil grup.",
+    "ms_MY": "Cari kumpulan Facebook dengan kata kunci dan kumpul URL profil kumpulan.",
+    "vi_VN": "Tìm nhóm Facebook theo từ khóa và thu thập URL trang nhóm.",
+    "de_DE": "Facebook-Gruppen per Keyword suchen und Gruppenprofil-URLs sammeln.",
+    "es_ES": "Busca grupos de Facebook por palabra clave y recopila URLs de perfil.",
+    "pt_BR": "Busque grupos do Facebook por palavra-chave e colete URLs de perfil.",
+    "fr_FR": "Recherchez des groupes Facebook par mot-clé et collectez les URL de profil.",
+    "ru_RU": "Поиск групп Facebook по ключевому слову и сбор URL профилей групп."
+  },
+  "main": "./main.ts",
+  "dependencies": {
+    "xport-browser-sdk": "file:../xport_browser_sdk"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "devDependencies": {
+    "bun-types": "^1.3.14"
+  },
+  "xportAutomation": {
+    "taskGroupConfig": [
+      {
+        "title": {
+          "en_US": "Keywords / devices",
+          "zh_CN": "关键词与设备",
+          "zh_TW": "關鍵字與裝置",
+          "ja_JP": "キーワード/デバイス",
+          "ko_KR": "키워드/기기",
+          "th_TH": "คำค้น/อุปกรณ์",
+          "id_ID": "Kata kunci/perangkat",
+          "ms_MY": "Kata kunci/peranti",
+          "vi_VN": "Từ khóa/thiết bị",
+          "de_DE": "Keywords/Geräte",
+          "es_ES": "Palabras clave/dispositivos",
+          "pt_BR": "Palavras-chave/dispositivos",
+          "fr_FR": "Mots-clés/appareils",
+          "ru_RU": "Ключевые слова/устройства"
+        },
+        "fields": [
+          {
+            "key": "keywords",
+            "type": "text",
+            "label": {
+              "en_US": "Search keywords",
+              "zh_CN": "搜索关键词",
+              "zh_TW": "搜尋關鍵字",
+              "ja_JP": "検索キーワード",
+              "ko_KR": "검색 키워드",
+              "th_TH": "คำค้นหา",
+              "id_ID": "Kata kunci pencarian",
+              "ms_MY": "Kata kunci carian",
+              "vi_VN": "Từ khóa tìm kiếm",
+              "de_DE": "Suchbegriffe",
+              "es_ES": "Palabras clave de búsqueda",
+              "pt_BR": "Palavras-chave de busca",
+              "fr_FR": "Mots-clés de recherche",
+              "ru_RU": "Ключевые слова поиска"
+            },
+            "hint": {
+              "en_US": "One keyword per line; each line becomes one sub-task",
+              "zh_CN": "支持多行，每一行一个关键词，对应一条子任务",
+              "zh_TW": "支援多行，每一行一個關鍵字，對應一條子任務",
+              "ja_JP": "1行に1キーワード。各行が1サブタスクになります",
+              "ko_KR": "한 줄에 키워드 하나. 각 줄이 하위 작업 하나",
+              "th_TH": "หนึ่งคำค้นต่อบรรทัด แต่ละบรรทัดเป็นหนึ่งงานย่อย",
+              "id_ID": "Satu kata kunci per baris; setiap baris satu subtugas",
+              "ms_MY": "Satu kata kunci setiap baris; setiap baris satu subtugas",
+              "vi_VN": "Mỗi dòng một từ khóa; mỗi dòng là một nhiệm vụ con",
+              "de_DE": "Ein Suchbegriff pro Zeile; jede Zeile eine Unteraufgabe",
+              "es_ES": "Una palabra clave por línea; cada línea es una subtarea",
+              "pt_BR": "Uma palavra-chave por linha; cada linha é uma subtarefa",
+              "fr_FR": "Un mot-clé par ligne ; chaque ligne est une sous-tâche",
+              "ru_RU": "Одно ключевое слово в строке; каждая строка — подзадача"
+            },
+            "multiline": true,
+            "maxLines": 4,
+            "defaultValue": ""
+          },
+          {
+            "key": "max_count",
+            "type": "text",
+            "label": {
+              "en_US": "Max groups per keyword",
+              "zh_CN": "每个关键词最大采集数量",
+              "zh_TW": "每個關鍵字最大採集數量",
+              "ja_JP": "キーワードあたり最大収集数",
+              "ko_KR": "키워드당 최대 수집 수",
+              "th_TH": "จำนวนกลุ่มสูงสุดต่อคำค้น",
+              "id_ID": "Maks grup per kata kunci",
+              "ms_MY": "Maks kumpulan per kata kunci",
+              "vi_VN": "Số nhóm tối đa mỗi từ khóa",
+              "de_DE": "Max. Gruppen pro Keyword",
+              "es_ES": "Máx. de grupos por palabra clave",
+              "pt_BR": "Máx. de grupos por palavra-chave",
+              "fr_FR": "Nombre max. de groupes par mot-clé",
+              "ru_RU": "Макс. групп на ключевое слово"
+            },
+            "hint": {
+              "en_US": "Applied to every sub-task (default 50)",
+              "zh_CN": "应用于每条子任务（默认 50）",
+              "zh_TW": "套用到每條子任務（預設 50）",
+              "ja_JP": "各サブタスクに適用（既定50）",
+              "ko_KR": "모든 하위 작업에 적용(기본 50)",
+              "th_TH": "ใช้กับทุกงานย่อย (ค่าเริ่ม 50)",
+              "id_ID": "Berlaku untuk setiap subtugas (default 50)",
+              "ms_MY": "Digunakan untuk setiap subtugas (lalai 50)",
+              "vi_VN": "Áp dụng cho mỗi nhiệm vụ con (mặc định 50)",
+              "de_DE": "Gilt für jede Unteraufgabe (Standard 50)",
+              "es_ES": "Se aplica a cada subtarea (predeterminado 50)",
+              "pt_BR": "Aplicado a cada subtarefa (padrão 50)",
+              "fr_FR": "Appliqué à chaque sous-tâche (défaut 50)",
+              "ru_RU": "Для каждой подзадачи (по умолчанию 50)"
+            },
+            "inputType": "number",
+            "defaultValue": 50
+          },
+          {
+            "key": "public_only",
+            "type": "switch",
+            "label": {
+              "en_US": "Public groups only",
+              "zh_CN": "仅采集公开小组",
+              "zh_TW": "僅採集公開小組",
+              "ja_JP": "公開グループのみ",
+              "ko_KR": "공개 그룹만",
+              "th_TH": "เฉพาะกลุ่มสาธารณะ",
+              "id_ID": "Hanya grup publik",
+              "ms_MY": "Kumpulan awam sahaja",
+              "vi_VN": "Chỉ nhóm công khai",
+              "de_DE": "Nur öffentliche Gruppen",
+              "es_ES": "Solo grupos públicos",
+              "pt_BR": "Apenas grupos públicos",
+              "fr_FR": "Groupes publics uniquement",
+              "ru_RU": "Только публичные группы"
+            },
+            "hint": {
+              "en_US": "When on, turn on the Public groups filter on the search sidebar before collecting",
+              "zh_CN": "开启后，进入搜索结果页会先打开侧栏「公开小组」筛选再采集",
+              "zh_TW": "開啟後，進入搜尋結果頁會先打開側欄「公開小組」篩選再採集",
+              "ja_JP": "オン時、検索結果ページで「公開グループ」フィルターを有効にしてから収集",
+              "ko_KR": "켜면 검색 결과 페이지에서 공개 그룹 필터를 켠 뒤 수집",
+              "th_TH": "เมื่อเปิด จะเปิดตัวกรองกลุ่มสาธารณะในแถบข้างก่อนเก็บข้อมูล",
+              "id_ID": "Jika aktif, nyalakan filter Grup publik di sidebar sebelum mengumpulkan",
+              "ms_MY": "Jika diaktifkan, hidupkan penapis kumpulan awam sebelum mengumpul",
+              "vi_VN": "Khi bật, bật bộ lọc nhóm công khai trên thanh bên trước khi thu thập",
+              "de_DE": "Wenn an: öffentliche Gruppen-Filter in der Seitenleiste aktivieren vor dem Sammeln",
+              "es_ES": "Si está activo, activa el filtro de grupos públicos antes de recopilar",
+              "pt_BR": "Se ativo, ativa o filtro de grupos públicos antes de coletar",
+              "fr_FR": "Si activé, active le filtre groupes publics avant la collecte",
+              "ru_RU": "Если включено: включает фильтр публичных групп перед сбором"
+            },
+            "defaultValue": 1
+          },
+          {
+            "key": "browsers",
+            "type": "browser",
+            "label": {
+              "en_US": "Browsers",
+              "zh_CN": "浏览器",
+              "zh_TW": "瀏覽器",
+              "ja_JP": "ブラウザ",
+              "ko_KR": "브라우저",
+              "th_TH": "เบราว์เซอร์",
+              "id_ID": "Browser",
+              "ms_MY": "Pelayar",
+              "vi_VN": "Trình duyệt",
+              "de_DE": "Browser",
+              "es_ES": "Navegadores",
+              "pt_BR": "Navegadores",
+              "fr_FR": "Navigateurs",
+              "ru_RU": "Браузеры"
+            },
+            "hint": {
+              "en_US": "Select devices that should run this task",
+              "zh_CN": "选择需要执行此任务的设备",
+              "zh_TW": "選擇需要執行此任務的裝置",
+              "ja_JP": "このタスクを実行するデバイスを選択",
+              "ko_KR": "이 작업을 실행할 기기를 선택",
+              "th_TH": "เลือกอุปกรณ์ที่จะรันงานนี้",
+              "id_ID": "Pilih perangkat yang menjalankan tugas ini",
+              "ms_MY": "Pilih peranti yang akan jalankan tugas ini",
+              "vi_VN": "Chọn thiết bị sẽ chạy nhiệm vụ này",
+              "de_DE": "Geräte auswählen, die diese Aufgabe ausführen sollen",
+              "es_ES": "Seleccione los dispositivos que ejecutarán esta tarea",
+              "pt_BR": "Selecione os dispositivos que executarão esta tarefa",
+              "fr_FR": "Sélectionnez les appareils qui exécuteront cette tâche",
+              "ru_RU": "Выберите устройства для выполнения этой задачи"
+            },
+            "single": false,
+            "platform": "facebook",
+            "defaultValue": []
+          }
+        ]
+      },
+      {
+        "title": {
+          "en_US": "Schedule",
+          "zh_CN": "频率规划控制",
+          "zh_TW": "頻率規劃控制",
+          "ja_JP": "スケジュール",
+          "ko_KR": "일정",
+          "th_TH": "กำหนดการ",
+          "id_ID": "Jadwal",
+          "ms_MY": "Jadual",
+          "vi_VN": "Lịch trình",
+          "de_DE": "Zeitplan",
+          "es_ES": "Programación",
+          "pt_BR": "Agendamento",
+          "fr_FR": "Planification",
+          "ru_RU": "Расписание"
+        },
+        "fields": [
+          {
+            "key": "daily_limit",
+            "type": "text",
+            "label": {
+              "en_US": "Daily limit",
+              "zh_CN": "每日上限",
+              "zh_TW": "每日上限",
+              "ja_JP": "1日の上限",
+              "ko_KR": "일일 한도",
+              "th_TH": "ขีดจำกัดรายวัน",
+              "id_ID": "Batas harian",
+              "ms_MY": "Had harian",
+              "vi_VN": "Giới hạn hàng ngày",
+              "de_DE": "Tageslimit",
+              "es_ES": "Límite diario",
+              "pt_BR": "Limite diário",
+              "fr_FR": "Limite quotidienne",
+              "ru_RU": "Дневной лимит"
+            },
+            "hint": {
+              "en_US": "Max tasks assigned to each device per day",
+              "zh_CN": "每个设备每天最多分配多少个任务",
+              "zh_TW": "每個裝置每天最多分配多少個任務",
+              "ja_JP": "各デバイスに1日あたり割り当てる最大タスク数",
+              "ko_KR": "기기당 하루 최대 할당 작업 수",
+              "th_TH": "จำนวนงานสูงสุดที่มอบหมายต่ออุปกรณ์ต่อวัน",
+              "id_ID": "Maks. tugas yang dialokasikan per perangkat per hari",
+              "ms_MY": "Maks tugas diperuntukkan kepada setiap peranti sehari",
+              "vi_VN": "Số nhiệm vụ tối đa gán cho mỗi thiết bị mỗi ngày",
+              "de_DE": "Max. Aufgaben pro Gerät und Tag",
+              "es_ES": "Máx. de tareas asignadas a cada dispositivo por día",
+              "pt_BR": "Máx. de tarefas atribuídas a cada dispositivo por dia",
+              "fr_FR": "Nombre max. de tâches par appareil et par jour",
+              "ru_RU": "Макс. число задач на устройство в день"
+            },
+            "inputType": "number",
+            "defaultValue": 10
+          },
+          {
+            "key": "during_min",
+            "type": "text",
+            "label": {
+              "en_US": "Min interval (s)",
+              "zh_CN": "最小间隔（s）",
+              "zh_TW": "最小間隔（s）",
+              "ja_JP": "最小間隔（秒）",
+              "ko_KR": "최소 간격(초)",
+              "th_TH": "ช่วงห่างขั้นต่ำ (วินาที)",
+              "id_ID": "Interval min (d)",
+              "ms_MY": "Selang min (s)",
+              "vi_VN": "Khoảng tối thiểu (giây)",
+              "de_DE": "Min. Abstand (s)",
+              "es_ES": "Intervalo mín. (s)",
+              "pt_BR": "Intervalo mín. (s)",
+              "fr_FR": "Intervalle min. (s)",
+              "ru_RU": "Мин. интервал (с)"
+            },
+            "hint": {
+              "en_US": "Min interval between runs on the same device (seconds)",
+              "zh_CN": "特定设备单日多次执行任务，每次执行之间的最小间隔（秒）",
+              "zh_TW": "特定裝置單日多次執行任務，每次執行之間的最小間隔（秒）",
+              "ja_JP": "同一デバイスでの実行間隔の最小値（秒）",
+              "ko_KR": "동일 기기 실행 간 최소 간격(초)",
+              "th_TH": "ช่วงห่างขั้นต่ำระหว่างการรันบนอุปกรณ์เดียวกัน (วินาที)",
+              "id_ID": "Interval min antar jalan pada perangkat yang sama (detik)",
+              "ms_MY": "Selang min antara larian pada peranti sama (saat)",
+              "vi_VN": "Khoảng tối thiểu giữa các lần chạy trên cùng thiết bị (giây)",
+              "de_DE": "Min. Abstand zwischen Läufen auf demselben Gerät (Sekunden)",
+              "es_ES": "Intervalo mín. entre ejecuciones en el mismo dispositivo (segundos)",
+              "pt_BR": "Intervalo mín. entre execuções no mesmo dispositivo (segundos)",
+              "fr_FR": "Intervalle min. entre exécutions sur le même appareil (secondes)",
+              "ru_RU": "Мин. интервал между запусками на одном устройстве (сек)"
+            },
+            "defaultValue": "60"
+          },
+          {
+            "key": "during_max",
+            "type": "text",
+            "label": {
+              "en_US": "Max interval (s)",
+              "zh_CN": "最大间隔（s）",
+              "zh_TW": "最大間隔（s）",
+              "ja_JP": "最大間隔（秒）",
+              "ko_KR": "최대 간격(초)",
+              "th_TH": "ช่วงห่างสูงสุด (วินาที)",
+              "id_ID": "Interval maks (d)",
+              "ms_MY": "Selang maks (s)",
+              "vi_VN": "Khoảng tối đa (giây)",
+              "de_DE": "Max. Abstand (s)",
+              "es_ES": "Intervalo máx. (s)",
+              "pt_BR": "Intervalo máx. (s)",
+              "fr_FR": "Intervalle max. (s)",
+              "ru_RU": "Макс. интервал (с)"
+            },
+            "hint": {
+              "en_US": "Max interval between runs on the same device (seconds)",
+              "zh_CN": "特定设备单日多次执行任务，每次执行之间的最大间隔（秒）",
+              "zh_TW": "特定裝置單日多次執行任務，每次執行之間的最大間隔（秒）",
+              "ja_JP": "同一デバイスでの実行間隔の最大値（秒）",
+              "ko_KR": "동일 기기 실행 간 최대 간격(초)",
+              "th_TH": "ช่วงห่างสูงสุดระหว่างการรันบนอุปกรณ์เดียวกัน (วินาที)",
+              "id_ID": "Interval maks antar jalan pada perangkat yang sama (detik)",
+              "ms_MY": "Selang maks antara larian pada peranti sama (saat)",
+              "vi_VN": "Khoảng tối đa giữa các lần chạy trên cùng thiết bị (giây)",
+              "de_DE": "Max. Abstand zwischen Läufen auf demselben Gerät (Sekunden)",
+              "es_ES": "Intervalo máx. entre ejecuciones en el mismo dispositivo (segundos)",
+              "pt_BR": "Intervalo máx. entre execuções no mesmo dispositivo (segundos)",
+              "fr_FR": "Intervalle max. entre exécutions sur le même appareil (secondes)",
+              "ru_RU": "Макс. интервал между запусками на одном устройстве (сек)"
+            },
+            "defaultValue": "600"
+          },
+          {
+            "key": "daily_time_start",
+            "type": "time",
+            "label": {
+              "en_US": "Daily start time",
+              "zh_CN": "每日执行开始时刻",
+              "zh_TW": "每日執行開始時刻",
+              "ja_JP": "毎日の開始時刻",
+              "ko_KR": "일일 시작 시각",
+              "th_TH": "เวลาเริ่มรายวัน",
+              "id_ID": "Waktu mulai harian",
+              "ms_MY": "Masa mula harian",
+              "vi_VN": "Giờ bắt đầu mỗi ngày",
+              "de_DE": "Täglicher Startzeitpunkt",
+              "es_ES": "Hora de inicio diaria",
+              "pt_BR": "Horário de início diário",
+              "fr_FR": "Heure de début quotidienne",
+              "ru_RU": "Ежедневное время начала"
+            },
+            "defaultValue": "09:00"
+          },
+          {
+            "key": "daily_time_end",
+            "type": "time",
+            "label": {
+              "en_US": "Daily end time",
+              "zh_CN": "每日执行结束时刻",
+              "zh_TW": "每日執行結束時刻",
+              "ja_JP": "毎日の終了時刻",
+              "ko_KR": "일일 종료 시각",
+              "th_TH": "เวลาสิ้นสุดรายวัน",
+              "id_ID": "Waktu selesai harian",
+              "ms_MY": "Masa tamat harian",
+              "vi_VN": "Giờ kết thúc mỗi ngày",
+              "de_DE": "Täglicher Endzeitpunkt",
+              "es_ES": "Hora de fin diaria",
+              "pt_BR": "Horário de término diário",
+              "fr_FR": "Heure de fin quotidienne",
+              "ru_RU": "Ежедневное время окончания"
+            },
+            "defaultValue": "18:00"
+          }
+        ]
+      }
+    ],
+    "taskRunConfig": [
+      {
+        "title": {
+          "en_US": "Search task",
+          "zh_CN": "搜索任务",
+          "zh_TW": "搜尋任務",
+          "ja_JP": "検索タスク",
+          "ko_KR": "검색 작업",
+          "th_TH": "งานค้นหา",
+          "id_ID": "Tugas pencarian",
+          "ms_MY": "Tugas carian",
+          "vi_VN": "Nhiệm vụ tìm kiếm",
+          "de_DE": "Suchaufgabe",
+          "es_ES": "Tarea de búsqueda",
+          "pt_BR": "Tarefa de busca",
+          "fr_FR": "Tâche de recherche",
+          "ru_RU": "Задача поиска"
+        },
+        "fields": [
+          {
+            "key": "keyword",
+            "type": "text",
+            "label": {
+              "en_US": "Search keyword",
+              "zh_CN": "搜索关键词",
+              "zh_TW": "搜尋關鍵字",
+              "ja_JP": "検索キーワード",
+              "ko_KR": "검색 키워드",
+              "th_TH": "คำค้นหา",
+              "id_ID": "Kata kunci pencarian",
+              "ms_MY": "Kata kunci carian",
+              "vi_VN": "Từ khóa tìm kiếm",
+              "de_DE": "Suchbegriff",
+              "es_ES": "Palabra clave de búsqueda",
+              "pt_BR": "Palavra-chave de busca",
+              "fr_FR": "Mot-clé de recherche",
+              "ru_RU": "Ключевое слово поиска"
+            },
+            "defaultValue": ""
+          },
+          {
+            "key": "max_count",
+            "type": "text",
+            "label": {
+              "en_US": "Max groups to collect",
+              "zh_CN": "最大采集数量",
+              "zh_TW": "最大採集數量",
+              "ja_JP": "最大収集数",
+              "ko_KR": "최대 수집 수",
+              "th_TH": "จำนวนกลุ่มสูงสุด",
+              "id_ID": "Jumlah grup maks",
+              "ms_MY": "Bilangan kumpulan maks",
+              "vi_VN": "Số nhóm tối đa",
+              "de_DE": "Max. zu erfassende Gruppen",
+              "es_ES": "Máx. de grupos a recopilar",
+              "pt_BR": "Máx. de grupos a coletar",
+              "fr_FR": "Nombre max. de groupes à collecter",
+              "ru_RU": "Макс. число групп для сбора"
+            },
+            "hint": {
+              "en_US": "Stop after this many groups (default 50)",
+              "zh_CN": "达到该数量后停止（默认 50）",
+              "zh_TW": "達此數量後停止（預設 50）",
+              "ja_JP": "この件数で停止（既定50）",
+              "ko_KR": "이 수에 도달하면 중단(기본 50)",
+              "th_TH": "หยุดเมื่อครบจำนวน (ค่าเริ่ม 50)",
+              "id_ID": "Berhenti setelah sejumlah ini (default 50)",
+              "ms_MY": "Berhenti selepas bilangan ini (lalai 50)",
+              "vi_VN": "Dừng sau số lượng này (mặc định 50)",
+              "de_DE": "Stopp nach dieser Anzahl (Standard 50)",
+              "es_ES": "Detener tras esta cantidad (predeterminado 50)",
+              "pt_BR": "Parar após esta quantidade (padrão 50)",
+              "fr_FR": "Arrêter après ce nombre (défaut 50)",
+              "ru_RU": "Остановиться после этого числа (по умолчанию 50)"
+            },
+            "inputType": "number",
+            "defaultValue": 50
+          },
+          {
+            "key": "public_only",
+            "type": "switch",
+            "label": {
+              "en_US": "Public groups only",
+              "zh_CN": "仅采集公开小组",
+              "zh_TW": "僅採集公開小組",
+              "ja_JP": "公開グループのみ",
+              "ko_KR": "공개 그룹만",
+              "th_TH": "เฉพาะกลุ่มสาธารณะ",
+              "id_ID": "Hanya grup publik",
+              "ms_MY": "Kumpulan awam sahaja",
+              "vi_VN": "Chỉ nhóm công khai",
+              "de_DE": "Nur öffentliche Gruppen",
+              "es_ES": "Solo grupos públicos",
+              "pt_BR": "Apenas grupos públicos",
+              "fr_FR": "Groupes publics uniquement",
+              "ru_RU": "Только публичные группы"
+            },
+            "hint": {
+              "en_US": "When on, turn on the Public groups filter on the search sidebar before collecting",
+              "zh_CN": "开启后，进入搜索结果页会先打开侧栏「公开小组」筛选再采集",
+              "zh_TW": "開啟後，進入搜尋結果頁會先打開側欄「公開小組」篩選再採集",
+              "ja_JP": "オン時、検索結果ページで「公開グループ」フィルターを有効にしてから収集",
+              "ko_KR": "켜면 검색 결과 페이지에서 공개 그룹 필터를 켠 뒤 수집",
+              "th_TH": "เมื่อเปิด จะเปิดตัวกรองกลุ่มสาธารณะในแถบข้างก่อนเก็บข้อมูล",
+              "id_ID": "Jika aktif, nyalakan filter Grup publik di sidebar sebelum mengumpulkan",
+              "ms_MY": "Jika diaktifkan, hidupkan penapis kumpulan awam sebelum mengumpul",
+              "vi_VN": "Khi bật, bật bộ lọc nhóm công khai trên thanh bên trước khi thu thập",
+              "de_DE": "Wenn an: öffentliche Gruppen-Filter in der Seitenleiste aktivieren vor dem Sammeln",
+              "es_ES": "Si está activo, activa el filtro de grupos públicos antes de recopilar",
+              "pt_BR": "Se ativo, ativa o filtro de grupos públicos antes de coletar",
+              "fr_FR": "Si activé, active le filtre groupes publics avant la collecte",
+              "ru_RU": "Если включено: включает фильтр публичных групп перед сбором"
+            },
+            "defaultValue": 1
+          }
+        ]
+      }
+    ],
+    "taskResultConfig": [
+      {
+        "title": {
+          "en_US": "Run result",
+          "zh_CN": "执行结果",
+          "zh_TW": "執行結果",
+          "ja_JP": "実行結果",
+          "ko_KR": "실행 결과",
+          "th_TH": "ผลการรัน",
+          "id_ID": "Hasil eksekusi",
+          "ms_MY": "Hasil larian",
+          "vi_VN": "Kết quả chạy",
+          "de_DE": "Ausführungsergebnis",
+          "es_ES": "Resultado de ejecución",
+          "pt_BR": "Resultado da execução",
+          "fr_FR": "Résultat d'exécution",
+          "ru_RU": "Результат выполнения"
+        },
+        "fields": [
+          {
+            "key": "keyword",
+            "type": "text",
+            "label": {
+              "en_US": "Search keyword",
+              "zh_CN": "搜索关键词",
+              "zh_TW": "搜尋關鍵字",
+              "ja_JP": "検索キーワード",
+              "ko_KR": "검색 키워드",
+              "th_TH": "คำค้นหา",
+              "id_ID": "Kata kunci pencarian",
+              "ms_MY": "Kata kunci carian",
+              "vi_VN": "Từ khóa tìm kiếm",
+              "de_DE": "Suchbegriff",
+              "es_ES": "Palabra clave de búsqueda",
+              "pt_BR": "Palavra-chave de busca",
+              "fr_FR": "Mot-clé de recherche",
+              "ru_RU": "Ключевое слово поиска"
+            }
+          },
+          {
+            "key": "collected_count",
+            "type": "stat",
+            "label": {
+              "en_US": "Groups collected",
+              "zh_CN": "采集小组数",
+              "zh_TW": "採集小組數",
+              "ja_JP": "収集グループ数",
+              "ko_KR": "수집한 그룹 수",
+              "th_TH": "จำนวนกลุ่มที่เก็บ",
+              "id_ID": "Grup dikumpulkan",
+              "ms_MY": "Kumpulan dikumpul",
+              "vi_VN": "Số nhóm đã thu thập",
+              "de_DE": "Gesammelte Gruppen",
+              "es_ES": "Grupos recopilados",
+              "pt_BR": "Grupos coletados",
+              "fr_FR": "Groupes collectés",
+              "ru_RU": "Собрано групп"
+            }
+          },
+          {
+            "key": "final_url",
+            "type": "text",
+            "label": {
+              "en_US": "Final URL",
+              "zh_CN": "最终 URL",
+              "zh_TW": "最終 URL",
+              "ja_JP": "最終 URL",
+              "ko_KR": "최종 URL",
+              "th_TH": "URL สุดท้าย",
+              "id_ID": "URL akhir",
+              "ms_MY": "URL akhir",
+              "vi_VN": "URL cuối",
+              "de_DE": "Endgültige URL",
+              "es_ES": "URL final",
+              "pt_BR": "URL final",
+              "fr_FR": "URL finale",
+              "ru_RU": "Итоговый URL"
+            }
+          }
+        ]
+      }
+    ],
+    "scriptAi": {
+      "enabled": false,
+      "purpose": "",
+      "deviceMcp": {
+        "enabled": false,
+        "purpose": ""
+      }
+    },
+    "intermediateDataSchema": {
+      "fields": [
+        {
+          "key": "keyword",
+          "type": "text",
+          "label": {
+            "en_US": "Search keyword",
+            "zh_CN": "搜索关键词",
+            "zh_TW": "搜尋關鍵字",
+            "ja_JP": "検索キーワード",
+            "ko_KR": "검색 키워드",
+            "th_TH": "คำค้นหา",
+            "id_ID": "Kata kunci pencarian",
+            "ms_MY": "Kata kunci carian",
+            "vi_VN": "Từ khóa tìm kiếm",
+            "de_DE": "Suchbegriff",
+            "es_ES": "Palabra clave de búsqueda",
+            "pt_BR": "Palavra-chave de busca",
+            "fr_FR": "Mot-clé de recherche",
+            "ru_RU": "Ключевое слово поиска"
+          }
+        },
+        {
+          "key": "group_name",
+          "type": "text",
+          "label": {
+            "en_US": "Group name",
+            "zh_CN": "小组名称",
+            "zh_TW": "小組名稱",
+            "ja_JP": "グループ名",
+            "ko_KR": "그룹 이름",
+            "th_TH": "ชื่อกลุ่ม",
+            "id_ID": "Nama grup",
+            "ms_MY": "Nama kumpulan",
+            "vi_VN": "Tên nhóm",
+            "de_DE": "Gruppenname",
+            "es_ES": "Nombre del grupo",
+            "pt_BR": "Nome do grupo",
+            "fr_FR": "Nom du groupe",
+            "ru_RU": "Название группы"
+          }
+        },
+        {
+          "key": "group_url",
+          "type": "text",
+          "label": {
+            "en_US": "Group profile URL",
+            "zh_CN": "小组主页地址",
+            "zh_TW": "小組主頁網址",
+            "ja_JP": "グループプロフィール URL",
+            "ko_KR": "그룹 프로필 URL",
+            "th_TH": "URL โปรไฟล์กลุ่ม",
+            "id_ID": "URL profil grup",
+            "ms_MY": "URL profil kumpulan",
+            "vi_VN": "URL trang nhóm",
+            "de_DE": "Gruppenprofil-URL",
+            "es_ES": "URL del perfil del grupo",
+            "pt_BR": "URL do perfil do grupo",
+            "fr_FR": "URL du profil du groupe",
+            "ru_RU": "URL профиля группы"
+          }
+        },
+        {
+          "key": "group_info",
+          "type": "text",
+          "label": {
+            "en_US": "Group info",
+            "zh_CN": "小组简介",
+            "zh_TW": "小組簡介",
+            "ja_JP": "グループ情報",
+            "ko_KR": "그룹 정보",
+            "th_TH": "ข้อมูลกลุ่ม",
+            "id_ID": "Info grup",
+            "ms_MY": "Maklumat kumpulan",
+            "vi_VN": "Thông tin nhóm",
+            "de_DE": "Gruppeninfo",
+            "es_ES": "Información del grupo",
+            "pt_BR": "Informações do grupo",
+            "fr_FR": "Infos du groupe",
+            "ru_RU": "Информация о группе"
+          }
+        }
+      ]
+    }
+  }
+}

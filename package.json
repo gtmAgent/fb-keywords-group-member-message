@@ -1,0 +1,538 @@
+{
+  "name": "fb-keywords-group-member-message",
+  "version": "1.5.0",
+  "private": true,
+  "type": "module",
+  "displayName": {
+    "en_US": "FB采集关键词成员+私信",
+    "de_DE": "FB采集关键词成员+私信",
+    "es_ES": "FB采集关键词成员+私信",
+    "fr_FR": "FB采集关键词成员+私信",
+    "id_ID": "FB采集关键词成员+私信",
+    "ja_JP": "FB采集关键词成员+私信",
+    "ko_KR": "FB采集关键词成员+私信",
+    "ms_MY": "FB采集关键词成员+私信",
+    "pt_BR": "FB采集关键词成员+私信",
+    "ru_RU": "FB采集关键词成员+私信",
+    "th_TH": "FB采集关键词成员+私信",
+    "vi_VN": "FB采集关键词成员+私信",
+    "zh_CN": "FB采集关键词成员+私信",
+    "zh_TW": "FB采集关键词成员+私信"
+  },
+  "description": {
+    "en_US": "Check accounts, over-collect keyword group members as a spare pool, then DM with failover: skip unmessageable members; after consecutive DM fails, skip that account.",
+    "zh_CN": "先巡检账号；按目标人数多倍采集成员作备用池；私信失败则换下一个成员，同一账号连续失败则跳过该账号。",
+    "zh_TW": "先巡檢帳號；依目標人數多倍採集成員作備用池；私訊失敗則換下一位成員，同一帳號連續失敗則跳過該帳號。",
+    "ja_JP": "アカウント点検後、必要数の倍数でメンバー予備を収集。DM失敗時は別メンバーへ、連続失敗でそのアカウントをスキップ。",
+    "ko_KR": "계정 점검 후 목표의 배수로 멤버 예비 수집. DM 실패 시 다른 멤버로 교체, 연속 실패 시 해당 계정 건너뜀.",
+    "th_TH": "ตรวจบัญชีแล้วเก็บสมาชิกสำรองเกินเป้า ส่ง DM ไม่ได้ให้ข้ามคน ล้มเหลวติดกันแล้วข้ามบัญชี",
+    "id_ID": "Cek akun, kumpulkan anggota cadangan berlebih, DM gagal → ganti anggota; gagal beruntun → lewati akun.",
+    "ms_MY": "Semak akaun, kumpul ahli rizab berlebih, DM gagal → tukar ahli; gagal berturut → langkau akaun.",
+    "vi_VN": "Kiểm tra tài khoản, thu thừa thành viên dự phòng; DM lỗi thì đổi người; lỗi liên tiếp thì bỏ tài khoản.",
+    "de_DE": "Konten prüfen, Mitglieder mit Reserve überquotieren; bei DM-Fehler nächsten Member, bei Serienfehlern Konto überspringen.",
+    "es_ES": "Revisa cuentas, recoge miembros de sobra; si falla el DM, otro miembro; fallos seguidos → saltar cuenta.",
+    "pt_BR": "Inspeciona contas, coleta membros sobressalentes; DM falha → outro membro; falhas seguidas → pula conta.",
+    "fr_FR": "Inspection, surcollecte de membres de réserve ; échec DM → autre membre ; échecs consecutifs → compte sauté.",
+    "ru_RU": "Проверка аккаунтов, запас участников сверх квоты; при сбое ЛС — другой участник; серия сбоев — пропуск аккаунта."
+  },
+  "main": "./main.ts",
+  "dependencies": {
+    "xport-workflow-sdk": "file:../xport_workflow_sdk"
+  },
+  "engines": {
+    "bun": ">=1.4.0"
+  },
+  "devDependencies": {
+    "bun-types": "^1.4.2"
+  },
+  "xportWorkflow": {
+    "workflowRunConfig": [
+      {
+        "title": {
+          "en_US": "Keywords & messaging",
+          "zh_CN": "关键词与私信",
+          "zh_TW": "關鍵字與私訊",
+          "ja_JP": "キーワードとDM",
+          "ko_KR": "키워드와 DM",
+          "th_TH": "คำค้นและข้อความ",
+          "id_ID": "Kata kunci & pesan",
+          "ms_MY": "Kata kunci & mesej",
+          "vi_VN": "Từ khóa & tin nhắn",
+          "de_DE": "Keywords & Nachrichten",
+          "es_ES": "Keywords y mensajes",
+          "pt_BR": "Palavras-chave e mensagens",
+          "fr_FR": "Mots-clés et messages",
+          "ru_RU": "Ключи и сообщения"
+        },
+        "fields": [
+          {
+            "key": "keywords",
+            "type": "text",
+            "label": {
+              "en_US": "Industry keywords",
+              "zh_CN": "行业关键词",
+              "zh_TW": "行業關鍵字",
+              "ja_JP": "業種キーワード",
+              "ko_KR": "업종 키워드",
+              "th_TH": "คำค้นอุตสาหกรรม",
+              "id_ID": "Kata kunci industri",
+              "ms_MY": "Kata kunci industri",
+              "vi_VN": "Từ khóa ngành",
+              "de_DE": "Branchen-Keywords",
+              "es_ES": "Keywords del sector",
+              "pt_BR": "Palavras-chave do setor",
+              "fr_FR": "Mots-clés métier",
+              "ru_RU": "Отраслевые ключи"
+            },
+            "hint": {
+              "en_US": "One keyword per line. Each keyword collects a random number of groups (1–3).",
+              "zh_CN": "每行一个关键词；每个关键词随机采集 1～3 个小组",
+              "zh_TW": "每行一個關鍵字；每個關鍵字隨機採集 1～3 個小組",
+              "ja_JP": "1行に1キーワード。各キーワードはグループを1～3件ランダム収集",
+              "ko_KR": "한 줄에 키워드 하나. 키워드마다 그룹 1~3개를 무작위로 수집",
+              "th_TH": "หนึ่งคำค้นต่อบรรทัด แต่ละคำค้นสุ่มเก็บกลุ่ม 1–3 กลุ่ม",
+              "id_ID": "Satu kata kunci per baris. Tiap kata kunci mengumpulkan 1–3 grup secara acak.",
+              "ms_MY": "Satu kata kunci setiap baris. Setiap kata kunci kumpul 1–3 kumpulan secara rawak.",
+              "vi_VN": "Mỗi dòng một từ khóa. Mỗi từ khóa thu ngẫu nhiên 1–3 nhóm.",
+              "de_DE": "Ein Keyword pro Zeile. Pro Keyword werden 1–3 Gruppen zufällig erfasst.",
+              "es_ES": "Una keyword por línea. Cada keyword recoge 1–3 grupos al azar.",
+              "pt_BR": "Uma palavra-chave por linha. Cada uma coleta 1–3 grupos aleatoriamente.",
+              "fr_FR": "Un mot-clé par ligne. Chaque mot-clé collecte 1–3 groupes au hasard.",
+              "ru_RU": "Один ключ в строке. На каждый ключ случайно 1–3 группы."
+            },
+            "multiline": true,
+            "maxLines": 5,
+            "defaultValue": ""
+          },
+          {
+            "key": "messages",
+            "type": "text",
+            "label": {
+              "en_US": "Message texts",
+              "zh_CN": "私信文案",
+              "zh_TW": "私訊文案",
+              "ja_JP": "DM本文",
+              "ko_KR": "DM 문구",
+              "th_TH": "ข้อความส่วนตัว",
+              "id_ID": "Teks pesan",
+              "ms_MY": "Teks mesej",
+              "vi_VN": "Nội dung tin nhắn",
+              "de_DE": "Nachrichtentexte",
+              "es_ES": "Textos del mensaje",
+              "pt_BR": "Textos da mensagem",
+              "fr_FR": "Textes du message",
+              "ru_RU": "Тексты сообщений"
+            },
+            "hint": {
+              "en_US": "Separate multiple messages with ==sep== (each may include newlines). Round-robin across recipients.",
+              "zh_CN": "多条文案用 ==sep== 分隔（单条可含换行）；按收件人顺序轮询使用",
+              "zh_TW": "多條文案用 ==sep== 分隔（單條可含換行）；按收件人順序輪詢使用",
+              "ja_JP": "複数文は ==sep== で区切る（改行可）。宛先順にラウンドロビン",
+              "ko_KR": "여러 문구는 ==sep== 로 구분(줄바꿈 가능). 수신자 순 라운드로빈",
+              "th_TH": "แยกหลายข้อความด้วย ==sep== (ขึ้นบรรทัดใหม่ได้) วนใช้ตามผู้รับ",
+              "id_ID": "Pisahkan multi pesan dengan ==sep== (boleh baris baru). Round-robin ke penerima.",
+              "ms_MY": "Asingkan berbilang mesej dengan ==sep== (boleh baris baharu). Pusingan kepada penerima.",
+              "vi_VN": "Nhiều nội dung cách bằng ==sep== (có thể xuống dòng). Luân phiên theo người nhận.",
+              "de_DE": "Mehrere Texte mit ==sep== trennen (Zeilenumbrüche ok). Round-robin an Empfänger.",
+              "es_ES": "Separe varios textos con ==sep== (pueden tener saltos). Round-robin por destinatario.",
+              "pt_BR": "Separe várias mensagens com ==sep== (podem ter quebras). Round-robin por destinatário.",
+              "fr_FR": "Séparez plusieurs textes par ==sep== (sauts de ligne OK). Round-robin par destinataire.",
+              "ru_RU": "Несколько текстов разделяйте ==sep== (переносы можно). По кругу по получателям."
+            },
+            "multiline": true,
+            "maxLines": 5,
+            "defaultValue": "Hello"
+          },
+          {
+            "key": "messages_per_account",
+            "type": "text",
+            "label": {
+              "en_US": "Messages per account",
+              "zh_CN": "每个账号发送条数",
+              "zh_TW": "每個帳號發送則數",
+              "ja_JP": "アカウントあたり送信数",
+              "ko_KR": "계정당 발송 수",
+              "th_TH": "จำนวนข้อความต่อบัญชี",
+              "id_ID": "Pesan per akun",
+              "ms_MY": "Mesej setiap akaun",
+              "vi_VN": "Số tin mỗi tài khoản",
+              "de_DE": "Nachrichten pro Konto",
+              "es_ES": "Mensajes por cuenta",
+              "pt_BR": "Mensagens por conta",
+              "fr_FR": "Messages par compte",
+              "ru_RU": "Сообщений на аккаунт"
+            },
+            "hint": {
+              "en_US": "Per healthy account send quota. Member pool is collected at 3× total quota for DM failover.",
+              "zh_CN": "每个可用账号的发送额度。成员池按总额度的 3 倍多采，供私信失败换人。",
+              "zh_TW": "每個可用帳號的發送額度。成員池按總額度的 3 倍多採，供私訊失敗換人。",
+              "ja_JP": "利用可能アカウントあたりの送信枠。メンバーは総枠の3倍収集しDM失敗時に交代。",
+              "ko_KR": "계정당 발송 한도. 멤버 풀은 총 한도의 3배로 수집해 DM 실패 시 교체.",
+              "th_TH": "โควตาส่งต่อบัญชี พูลสมาชิกเก็บ 3 เท่าเพื่อสลับเมื่อ DM ไม่ได้",
+              "id_ID": "Kuota kirim per akun sehat. Pool anggota dikumpulkan 3× total untuk failover DM.",
+              "ms_MY": "Kuota hantar setiap akaun sihat. Kolam ahli dikumpul 3× jumlah untuk failover DM.",
+              "vi_VN": "Hạn mức gửi mỗi tài khoản. Pool thành viên thu gấp 3 tổng hạn mức để đổi khi DM lỗi.",
+              "de_DE": "Sende-Kontingent pro gesundem Konto. Mitgliederpool = 3× Gesamtquote für DM-Failover.",
+              "es_ES": "Cupo por cuenta sana. Pool de miembros = 3× cupo total para failover de DM.",
+              "pt_BR": "Cota por conta saudável. Pool de membros = 3× cota total para failover de DM.",
+              "fr_FR": "Quota par compte sain. Pool membres = 3× quota total pour bascule DM.",
+              "ru_RU": "Квота на здоровый аккаунт. Пул участников = 3× общей квоты для замены при сбое ЛС."
+            },
+            "inputType": "number",
+            "defaultValue": 3
+          },
+          {
+            "key": "images",
+            "type": "resource",
+            "label": {
+              "en_US": "Images (optional)",
+              "zh_CN": "图片（可选）",
+              "zh_TW": "圖片（可選）",
+              "ja_JP": "画像（任意）",
+              "ko_KR": "이미지(선택)",
+              "th_TH": "รูปภาพ (ไม่บังคับ)",
+              "id_ID": "Gambar (opsional)",
+              "ms_MY": "Imej (pilihan)",
+              "vi_VN": "Ảnh (tuỳ chọn)",
+              "de_DE": "Bilder (optional)",
+              "es_ES": "Imágenes (opcional)",
+              "pt_BR": "Imagens (opcional)",
+              "fr_FR": "Images (optionnel)",
+              "ru_RU": "Картинки (необязательно)"
+            },
+            "hint": {
+              "en_US": "Optional image pool; round-robin across recipients. Leave empty for text-only.",
+              "zh_CN": "可选图片池，按收件人顺序轮询；不选则只发文字",
+              "zh_TW": "可選圖片池，按收件人順序輪詢；不選則只發文字",
+              "ja_JP": "任意の画像プール。宛先順にラウンドロビン。空なら文字のみ",
+              "ko_KR": "선택 이미지 풀. 수신자 순 라운드로빈. 비우면 텍스트만",
+              "th_TH": "พูลรูปทางเลือก วนตามผู้รับ ว่างไว้เพื่อส่งเฉพาะข้อความ",
+              "id_ID": "Pool gambar opsional; round-robin ke penerima. Kosong = teks saja.",
+              "ms_MY": "Kolam imej pilihan; pusingan kepada penerima. Kosong = teks sahaja.",
+              "vi_VN": "Kho ảnh tuỳ chọn; luân phiên theo người nhận. Để trống = chỉ chữ.",
+              "de_DE": "Optionaler Bildpool; Round-robin an Empfänger. Leer = nur Text.",
+              "es_ES": "Pool de imágenes opcional; round-robin por destinatario. Vacío = solo texto.",
+              "pt_BR": "Pool de imagens opcional; round-robin por destinatário. Vazio = só texto.",
+              "fr_FR": "Pool d'images optionnel ; round-robin par destinataire. Vide = texte seul.",
+              "ru_RU": "Опциональный пул картинок; по кругу. Пусто = только текст."
+            },
+            "allowMultiple": true,
+            "extensions": [
+              ".png",
+              ".jpg",
+              ".jpeg",
+              ".webp",
+              ".gif"
+            ],
+            "defaultValue": []
+          },
+          {
+            "key": "public_only",
+            "type": "switch",
+            "label": {
+              "en_US": "Public groups only",
+              "zh_CN": "仅采集公开小组",
+              "zh_TW": "僅採集公開小組",
+              "ja_JP": "公開グループのみ",
+              "ko_KR": "공개 그룹만",
+              "th_TH": "เฉพาะกลุ่มสาธารณะ",
+              "id_ID": "Hanya grup publik",
+              "ms_MY": "Kumpulan awam sahaja",
+              "vi_VN": "Chỉ nhóm công khai",
+              "de_DE": "Nur öffentliche Gruppen",
+              "es_ES": "Solo grupos públicos",
+              "pt_BR": "Apenas grupos públicos",
+              "fr_FR": "Groupes publics uniquement",
+              "ru_RU": "Только публичные группы"
+            },
+            "hint": {
+              "en_US": "When on, group search enables the Public groups filter before collecting",
+              "zh_CN": "开启后，搜索小组时会先打开「公开小组」筛选再采集",
+              "zh_TW": "開啟後，搜尋小組時會先打開「公開小組」篩選再採集",
+              "ja_JP": "オン時、検索で「公開グループ」フィルターを有効にしてから収集",
+              "ko_KR": "켜면 검색 시 공개 그룹 필터를 켠 뒤 수집",
+              "th_TH": "เมื่อเปิด จะเปิดตัวกรองกลุ่มสาธารณะก่อนเก็บข้อมูล",
+              "id_ID": "Jika aktif, aktifkan filter Grup publik sebelum mengumpulkan",
+              "ms_MY": "Jika diaktifkan, hidupkan penapis kumpulan awam sebelum mengumpul",
+              "vi_VN": "Khi bật, bật bộ lọc nhóm công khai trước khi thu thập",
+              "de_DE": "Wenn an: Filter für öffentliche Gruppen vor dem Sammeln aktivieren",
+              "es_ES": "Si está activo, activa el filtro de grupos públicos antes de recopilar",
+              "pt_BR": "Se ativo, ativa o filtro de grupos públicos antes de coletar",
+              "fr_FR": "Si activé, active le filtre groupes publics avant la collecte",
+              "ru_RU": "Если включено: включает фильтр публичных групп перед сбором"
+            },
+            "defaultValue": 1
+          },
+          {
+            "key": "browsers",
+            "type": "browser",
+            "label": {
+              "en_US": "Browsers",
+              "zh_CN": "浏览器",
+              "zh_TW": "瀏覽器",
+              "ja_JP": "ブラウザ",
+              "ko_KR": "브라우저",
+              "th_TH": "เบราว์เซอร์",
+              "id_ID": "Browser",
+              "ms_MY": "Pelayar",
+              "vi_VN": "Trình duyệt",
+              "de_DE": "Browser",
+              "es_ES": "Navegadores",
+              "pt_BR": "Navegadores",
+              "fr_FR": "Navigateurs",
+              "ru_RU": "Браузеры"
+            },
+            "hint": {
+              "en_US": "Facebook fingerprint browsers. Search, member collect, and DMs are round-robin assigned.",
+              "zh_CN": "Facebook 指纹浏览器。搜小组、采成员、发私信均按顺序轮询分配",
+              "zh_TW": "Facebook 指紋瀏覽器。搜小組、採成員、發私訊均按順序輪詢分配",
+              "ja_JP": "Facebook 指紋ブラウザ。検索・メンバー収集・DM をラウンドロビン割当",
+              "ko_KR": "Facebook 지문 브라우저. 검색·멤버 수집·DM을 라운드로빈 배정",
+              "th_TH": "เบราว์เซอร์ลายนิ้วมือ Facebook แบ่งงานค้นหา/เก็บสมาชิก/DM แบบวนรอบ",
+              "id_ID": "Browser sidik jari Facebook. Pencarian, anggota, dan DM dibagikan round-robin.",
+              "ms_MY": "Pelayar cap jari Facebook. Carian, ahli dan DM diagih secara pusingan.",
+              "vi_VN": "Trình duyệt vân tay Facebook. Tìm nhóm, thu thành viên và nhắn tin luân phiên.",
+              "de_DE": "Facebook-Fingerprint-Browser. Suche, Mitglieder und DMs per Round-robin.",
+              "es_ES": "Navegadores fingerprint de Facebook. Búsqueda, miembros y DMs en round-robin.",
+              "pt_BR": "Navegadores fingerprint do Facebook. Busca, membros e DMs em round-robin.",
+              "fr_FR": "Navigateurs fingerprint Facebook. Recherche, membres et DM en round-robin.",
+              "ru_RU": "Fingerprint-браузеры Facebook. Поиск, участники и ЛС — по кругу."
+            },
+            "single": false,
+            "platform": "facebook",
+            "defaultValue": []
+          }
+        ]
+      }
+    ],
+    "workflowResultConfig": [
+      {
+        "title": {
+          "en_US": "Workflow result",
+          "zh_CN": "工作流结果",
+          "zh_TW": "工作流結果",
+          "ja_JP": "ワークフロー結果",
+          "ko_KR": "워크플로 결과",
+          "th_TH": "ผลเวิร์กโฟลว์",
+          "id_ID": "Hasil alur kerja",
+          "ms_MY": "Hasil aliran kerja",
+          "vi_VN": "Kết quả quy trình",
+          "de_DE": "Workflow-Ergebnis",
+          "es_ES": "Resultado del flujo",
+          "pt_BR": "Resultado do fluxo",
+          "fr_FR": "Résultat du workflow",
+          "ru_RU": "Результат workflow"
+        },
+        "fields": [
+          {
+            "key": "groups_collected",
+            "type": "stat",
+            "label": {
+              "en_US": "Groups collected",
+              "zh_CN": "采集小组数",
+              "zh_TW": "採集小組數",
+              "ja_JP": "収集グループ数",
+              "ko_KR": "수집 그룹 수",
+              "th_TH": "จำนวนกลุ่มที่เก็บ",
+              "id_ID": "Grup dikumpulkan",
+              "ms_MY": "Kumpulan dikumpul",
+              "vi_VN": "Số nhóm đã thu",
+              "de_DE": "Gesammelte Gruppen",
+              "es_ES": "Grupos recopilados",
+              "pt_BR": "Grupos coletados",
+              "fr_FR": "Groupes collectés",
+              "ru_RU": "Собрано групп"
+            }
+          },
+          {
+            "key": "members_collected",
+            "type": "stat",
+            "label": {
+              "en_US": "Members collected",
+              "zh_CN": "采集成员数",
+              "zh_TW": "採集成員數",
+              "ja_JP": "収集メンバー数",
+              "ko_KR": "수집 멤버 수",
+              "th_TH": "จำนวนสมาชิกที่เก็บ",
+              "id_ID": "Anggota dikumpulkan",
+              "ms_MY": "Ahli dikumpul",
+              "vi_VN": "Số thành viên đã thu",
+              "de_DE": "Gesammelte Mitglieder",
+              "es_ES": "Miembros recopilados",
+              "pt_BR": "Membros coletados",
+              "fr_FR": "Membres collectés",
+              "ru_RU": "Собрано участников"
+            }
+          },
+          {
+            "key": "browsers_checked",
+            "type": "stat",
+            "label": {
+              "en_US": "Browsers checked",
+              "zh_CN": "巡检浏览器数",
+              "zh_TW": "巡檢瀏覽器數",
+              "ja_JP": "点検ブラウザ数",
+              "ko_KR": "점검 브라우저 수",
+              "th_TH": "เบราว์เซอร์ที่ตรวจ",
+              "id_ID": "Browser diperiksa",
+              "ms_MY": "Pelayar diperiksa",
+              "vi_VN": "Trình duyệt đã kiểm",
+              "de_DE": "Geprüfte Browser",
+              "es_ES": "Navegadores revisados",
+              "pt_BR": "Navegadores inspecionados",
+              "fr_FR": "Navigateurs inspectés",
+              "ru_RU": "Проверено браузеров"
+            }
+          },
+          {
+            "key": "browsers_healthy",
+            "type": "stat",
+            "label": {
+              "en_US": "Healthy accounts",
+              "zh_CN": "可用账号数",
+              "zh_TW": "可用帳號數",
+              "ja_JP": "利用可能アカウント",
+              "ko_KR": "사용 가능 계정",
+              "th_TH": "บัญชีที่ใช้ได้",
+              "id_ID": "Akun sehat",
+              "ms_MY": "Akaun sihat",
+              "vi_VN": "Tài khoản khả dụng",
+              "de_DE": "Gesunde Konten",
+              "es_ES": "Cuentas sanas",
+              "pt_BR": "Contas saudáveis",
+              "fr_FR": "Comptes sains",
+              "ru_RU": "Рабочих аккаунтов"
+            }
+          },
+          {
+            "key": "browsers_tagged",
+            "type": "stat",
+            "label": {
+              "en_US": "Tagged accounts",
+              "zh_CN": "已打标签账号数",
+              "zh_TW": "已打標籤帳號數",
+              "ja_JP": "タグ付きアカウント",
+              "ko_KR": "태그된 계정",
+              "th_TH": "บัญชีที่ติดป้าย",
+              "id_ID": "Akun berlabel",
+              "ms_MY": "Akaun berlabel",
+              "vi_VN": "Tài khoản bị gắn nhãn",
+              "de_DE": "Markierte Konten",
+              "es_ES": "Cuentas etiquetadas",
+              "pt_BR": "Contas rotuladas",
+              "fr_FR": "Comptes étiquetés",
+              "ru_RU": "Помеченных аккаунтов"
+            }
+          },
+          {
+            "key": "messages_sent",
+            "type": "stat",
+            "label": {
+              "en_US": "Messages sent",
+              "zh_CN": "私信成功数",
+              "zh_TW": "私訊成功數",
+              "ja_JP": "DM成功数",
+              "ko_KR": "DM 성공 수",
+              "th_TH": "ส่งข้อความสำเร็จ",
+              "id_ID": "Pesan terkirim",
+              "ms_MY": "Mesej berjaya",
+              "vi_VN": "Tin gửi thành công",
+              "de_DE": "Gesendete Nachrichten",
+              "es_ES": "Mensajes enviados",
+              "pt_BR": "Mensagens enviadas",
+              "fr_FR": "Messages envoyés",
+              "ru_RU": "Отправлено ЛС"
+            }
+          },
+          {
+            "key": "messages_failed",
+            "type": "stat",
+            "label": {
+              "en_US": "Messages failed",
+              "zh_CN": "私信失败数",
+              "zh_TW": "私訊失敗數",
+              "ja_JP": "DM失敗数",
+              "ko_KR": "DM 실패 수",
+              "th_TH": "ส่งข้อความล้มเหลว",
+              "id_ID": "Pesan gagal",
+              "ms_MY": "Mesej gagal",
+              "vi_VN": "Tin gửi thất bại",
+              "de_DE": "Fehlgeschlagene Nachrichten",
+              "es_ES": "Mensajes fallidos",
+              "pt_BR": "Mensagens com falha",
+              "fr_FR": "Messages échoués",
+              "ru_RU": "Ошибок ЛС"
+            }
+          },
+          {
+            "key": "messages_skipped",
+            "type": "stat",
+            "label": {
+              "en_US": "Quota abandoned (account skipped)",
+              "zh_CN": "因跳过账号放弃的额度",
+              "zh_TW": "因跳過帳號放棄的額度",
+              "ja_JP": "アカウントスキップで放棄した枠",
+              "ko_KR": "계정 건너뛰기로 포기한 한도",
+              "th_TH": "โควตาที่ทิ้งหลังข้ามบัญชี",
+              "id_ID": "Kuota ditinggalkan (akun dilewati)",
+              "ms_MY": "Kuota ditinggalkan (akaun dilangkau)",
+              "vi_VN": "Hạn mức bỏ (bỏ tài khoản)",
+              "de_DE": "Aufgegebenes Kontingent (Konto übersprungen)",
+              "es_ES": "Cupo abandonado (cuenta saltada)",
+              "pt_BR": "Cota abandonada (conta pulada)",
+              "fr_FR": "Quota abandonné (compte sauté)",
+              "ru_RU": "Оставленная квота (аккаунт пропущен)"
+            }
+          },
+          {
+            "key": "summary",
+            "type": "text",
+            "label": {
+              "en_US": "Summary",
+              "zh_CN": "摘要",
+              "zh_TW": "摘要",
+              "ja_JP": "要約",
+              "ko_KR": "요약",
+              "th_TH": "สรุป",
+              "id_ID": "Ringkasan",
+              "ms_MY": "Ringkasan",
+              "vi_VN": "Tóm tắt",
+              "de_DE": "Zusammenfassung",
+              "es_ES": "Resumen",
+              "pt_BR": "Resumo",
+              "fr_FR": "Résumé",
+              "ru_RU": "Сводка"
+            }
+          }
+        ]
+      }
+    ],
+    "scriptAi": {
+      "enabled": false,
+      "purpose": "",
+      "deviceMcp": {
+        "enabled": false,
+        "purpose": ""
+      }
+    },
+    "flowChart": {
+      "title": {
+        "en_US": "Keyword groups to DMs",
+        "zh_CN": "关键词小组成员私信",
+        "zh_TW": "關鍵字小組成員私訊",
+        "ja_JP": "キーワードからDM",
+        "ko_KR": "키워드에서 DM까지",
+        "th_TH": "จากคำค้นถึง DM",
+        "id_ID": "Kata kunci ke DM",
+        "ms_MY": "Kata kunci ke DM",
+        "vi_VN": "Từ khóa đến tin nhắn",
+        "de_DE": "Von Keywords zu DMs",
+        "es_ES": "De keywords a DMs",
+        "pt_BR": "De palavras-chave a DMs",
+        "fr_FR": "Des mots-clés aux DM",
+        "ru_RU": "От ключей к ЛС"
+      },
+      "mermaid": "flowchart TD\n  start([填写关键词与私信参数]) --> check[批量巡检全部账号]\n  check --> hasOk{是否有可用账号}\n  hasOk -->|否| failCheck([结束：无可用账号])\n  hasOk -->|是| calc[目标额度 · 可用浏览器×每账号条数]\n  calc --> shuffle[打乱关键词按批搜小组]\n  shuffle --> members[多倍采集成员备用池]\n  members --> enough{备用池是否凑够}\n  enough -->|否且还有关键词| shuffle\n  enough -->|是或关键词用尽| dmWave[各账号取成员发私信]\n  dmWave --> dmOk{私信是否成功}\n  dmOk -->|成功| quotaDone{账号额度是否满}\n  quotaDone -->|否| dmWave\n  quotaDone -->|是| done([汇总结果])\n  dmOk -->|失败| skipMem[跳过该成员换下一个]\n  skipMem --> consec{同账号是否连续失败}\n  consec -->|未达上限| dmWave\n  consec -->|达上限| skipAcc[跳过该账号]\n  skipAcc --> moreAcc{是否还有可用账号}\n  moreAcc -->|是| dmWave\n  moreAcc -->|否| done"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "format": "xport-github-project",
+  "formatVersion": 1,
+  "kind": "automation",
+  "exportedAt": 1793089651,
+  "project": {
+    "label": "fb-auto-message",
+    "name": "Facebook私信",
+    "target": "browser",
+    "version": "1.1.6"
+  },
+  "deviceTargets": [
+    "browser",
+    "android",
+    "ios"
+  ],
+  "socialCategory": {
+    "sourceId": 1,
+    "sourceUid": 0,
+    "name": "Facebook",
+    "icon": "social/774f5503-1c13-4dc5-b966-243db314f6dd.svg",
+    "websiteDomain": "https://www.facebook.com",
+    "androidPackage": "com.facebook.katana",
+    "iosPackage": "com.facebook.Facebook"
+  },
+  "record": {
+    "uuid": "036c7dbb-9b5b-45e6-8228-cc4c323077f7",
+    "name": "Facebook私信",
+    "description": "给指定用户发送 Facebook 私信：打开会话、处理可选端到端加密 PIN（固定 123456）、输入文案、可选附图、点击发送。",
+    "deviceType": "browser",
+    "updateAt": 1792390484,
+    "contentMd5": "d4a22cf10db7934a98f13691619fddcd"
+  }
+}

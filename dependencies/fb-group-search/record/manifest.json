@@ -1,0 +1,89 @@
+{
+  "version": 2,
+  "uuid": "30940b3e-ae34-4373-9b8a-6ec9f2619873",
+  "name": "Facebook小组采集",
+  "description": "指定关键词搜索采集关联的Facebook小组主页地址",
+  "deviceType": "browser",
+  "socialCategoryId": 1,
+  "deviceId": 0,
+  "createdAt": 1787452653,
+  "updatedAt": 1792390489,
+  "routes": [
+    {
+      "index": 1,
+      "routeId": "e8da3cfa-04bb-431a-935b-31cfcc010ae0",
+      "name": "Facebook小组采集",
+      "description": "",
+      "steps": [
+        {
+          "index": 1,
+          "stepId": "ca7bb143-8d43-45f9-b7bd-dfd19765fc9d",
+          "title": "进入Facebook主页找到搜索输入框输入搜索关键词",
+          "description": "",
+          "capturedAt": 1787452697,
+          "screenshot": "routes/001/steps/001/screenshot.png",
+          "annotatedScreenshot": "routes/001/steps/001/annotated.png",
+          "markup": "routes/001/steps/001/markup.json",
+          "meta": {
+            "browser": {
+              "url": "https://www.facebook.com/",
+              "title": "(11) Facebook",
+              "pagePath": "routes/001/steps/001/page.html"
+            }
+          }
+        },
+        {
+          "index": 2,
+          "stepId": "655cfe95-ab73-45b7-a890-fcfb97d1a52a",
+          "title": "回车执行搜索",
+          "description": "",
+          "capturedAt": 1787452749,
+          "screenshot": "routes/001/steps/002/screenshot.png",
+          "annotatedScreenshot": "routes/001/steps/002/annotated.png",
+          "markup": "routes/001/steps/002/markup.json",
+          "meta": {
+            "browser": {
+              "url": "https://www.facebook.com/",
+              "title": "(11) Facebook",
+              "pagePath": "routes/001/steps/002/page.html"
+            }
+          }
+        },
+        {
+          "index": 3,
+          "stepId": "c2179150-d911-40f3-9d5f-b4b535dc70e1",
+          "title": "点击搜索列表页的小组，进入小组结果页面",
+          "description": "",
+          "capturedAt": 1787452775,
+          "screenshot": "routes/001/steps/003/screenshot.png",
+          "annotatedScreenshot": "routes/001/steps/003/annotated.png",
+          "markup": "routes/001/steps/003/markup.json",
+          "meta": {
+            "browser": {
+              "url": "https://www.facebook.com/search/top?q=bike",
+              "title": "(11) bike - 搜索结果 | Facebook",
+              "pagePath": "routes/001/steps/003/page.html"
+            }
+          }
+        },
+        {
+          "index": 4,
+          "stepId": "1a816c4d-c079-4d76-a92d-9548e2db7772",
+          "title": "滚动采集小组搜索结果页面，采集facebook小组主页地址",
+          "description": "“https://www.facebook.com/search/groups/?q=bike” 好像是可以直接组装访问地址直达搜索结果页，如果可以你按照最高效的方式做",
+          "capturedAt": 1787452838,
+          "screenshot": "routes/001/steps/004/screenshot.png",
+          "annotatedScreenshot": "routes/001/steps/004/annotated.png",
+          "markup": "routes/001/steps/004/markup.json",
+          "meta": {
+            "browser": {
+              "url": "https://www.facebook.com/search/groups/?q=bike",
+              "title": "(11) bike - 搜索结果 | Facebook",
+              "pagePath": "routes/001/steps/004/page.html"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

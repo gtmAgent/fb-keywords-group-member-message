@@ -1,0 +1,175 @@
+{
+  "version": 2,
+  "uuid": "036c7dbb-9b5b-45e6-8228-cc4c323077f7",
+  "name": "Facebook私信",
+  "description": "给指定用户发送 Facebook 私信：打开会话、处理可选端到端加密 PIN（固定 123456）、输入文案、可选附图、点击发送。",
+  "deviceType": "browser",
+  "socialCategoryId": 1,
+  "deviceId": 0,
+  "createdAt": 1791971579,
+  "updatedAt": 1792390484,
+  "routes": [
+    {
+      "index": 1,
+      "routeId": "db4e8c5c-0156-460d-8434-5bf1cc9cadf4",
+      "name": "Facebook给指定用户发私信",
+      "description": "从用户主页链接进入 Messenger 会话并发送一条私信（可选图片）。PIN 固定为 123456，无弹窗则跳过。",
+      "entryUrl": "https://www.facebook.com/messages/t/100000200616298",
+      "steps": [
+        {
+          "index": 1,
+          "stepId": "8ec88b9d-e4c5-426a-b4c2-c32580210756",
+          "title": "进入私信页面",
+          "description": "用户主页地址有两种格式，第一种是https://www.facebook.com/profile.php?id=100000200616298，便捷的私信跳转链接为https://www.facebook.com/messages/t/100000200616298；第二种是https://www.facebook.com/zheng.jia.wei.442347，便捷的私信跳转链接为https://www.facebook.com/messages/t/zheng.jia.wei.442347",
+          "capturedAt": 1791972550,
+          "screenshot": "routes/001/steps/001/screenshot.png",
+          "annotatedScreenshot": "routes/001/steps/001/annotated.png",
+          "markup": "routes/001/steps/001/markup.json",
+          "meta": {
+            "browser": {
+              "url": "https://www.facebook.com/messages/t/100000200616298",
+              "title": "(1) Messenger | Facebook",
+              "pagePath": "routes/001/steps/001/page.html"
+            }
+          }
+        },
+        {
+          "index": 2,
+          "stepId": "47d93f5a-9031-453d-8524-1d46346d734f",
+          "title": "点击创建pin",
+          "description": "因为有的设备首次进入私信，会弹出创建PIN，有则点击创建pin，没有的话跳过这一步。",
+          "capturedAt": 1791972675,
+          "screenshot": "routes/001/steps/002/screenshot.png",
+          "annotatedScreenshot": "routes/001/steps/002/annotated.png",
+          "markup": "routes/001/steps/002/markup.json",
+          "meta": {
+            "browser": {
+              "url": "https://www.facebook.com/messages/t/100000200616298",
+              "title": "(1) Messenger | Facebook",
+              "pagePath": "routes/001/steps/002/page.html"
+            }
+          }
+        },
+        {
+          "index": 3,
+          "stepId": "e3e31440-3f10-4807-a2d6-8d3623fde148",
+          "title": "输入pin",
+          "description": "输入123456没有上一步创建，则跳过此步骤",
+          "capturedAt": 1791972777,
+          "screenshot": "routes/001/steps/003/screenshot.png",
+          "annotatedScreenshot": "routes/001/steps/003/annotated.png",
+          "markup": "routes/001/steps/003/markup.json",
+          "meta": {
+            "browser": {
+              "url": "https://www.facebook.com/messages/t/100000200616298",
+              "title": "(1) Messenger | Facebook",
+              "pagePath": "routes/001/steps/003/page.html"
+            }
+          }
+        },
+        {
+          "index": 4,
+          "stepId": "8ce0a8d3-f04e-44c5-85cf-1d4b5e2e5055",
+          "title": "再次输入pin",
+          "description": "pin码需要输入两次，再次输入一次123456如果没有第二步创建pin则该步骤也跳过",
+          "capturedAt": 1791972839,
+          "screenshot": "routes/001/steps/004/screenshot.png",
+          "annotatedScreenshot": "routes/001/steps/004/annotated.png",
+          "markup": "routes/001/steps/004/markup.json",
+          "meta": {
+            "browser": {
+              "url": "https://www.facebook.com/messages/t/100000200616298",
+              "title": "(1) Messenger | Facebook",
+              "pagePath": "routes/001/steps/004/page.html"
+            }
+          }
+        },
+        {
+          "index": 5,
+          "stepId": "2eb97de9-37e2-44d4-8f43-8ed27bab2737",
+          "title": "点击继续",
+          "description": "如果没有创建pin码步骤则直接跳到此步骤",
+          "capturedAt": 1791972943,
+          "screenshot": "routes/001/steps/005/screenshot.png",
+          "annotatedScreenshot": "routes/001/steps/005/annotated.png",
+          "markup": "routes/001/steps/005/markup.json",
+          "meta": {
+            "browser": {
+              "url": "https://www.facebook.com/messages/t/100000200616298",
+              "title": "Messenger | Facebook",
+              "pagePath": "routes/001/steps/005/page.html"
+            }
+          }
+        },
+        {
+          "index": 6,
+          "stepId": "b25c5e5e-646b-49fe-ba2f-bdbacd4a02f6",
+          "title": "点击文案框",
+          "description": "点击 Messenger 会话底部的消息输入框，使其获得焦点。",
+          "capturedAt": 1791972996,
+          "screenshot": "routes/001/steps/006/screenshot.png",
+          "annotatedScreenshot": "routes/001/steps/006/annotated.png",
+          "markup": "routes/001/steps/006/markup.json",
+          "meta": {
+            "browser": {
+              "url": "https://www.facebook.com/messages/new?initial_e2ee_toggle_position=true",
+              "title": "Messenger | Facebook",
+              "pagePath": "routes/001/steps/006/page.html"
+            }
+          }
+        },
+        {
+          "index": 7,
+          "stepId": "cd7a57db-87fb-4a8b-8c9b-5e3ce0d401d8",
+          "title": "输入文案",
+          "description": "在消息输入框中输入本次任务的私信文案。",
+          "capturedAt": 1791973026,
+          "screenshot": "routes/001/steps/007/screenshot.png",
+          "annotatedScreenshot": "routes/001/steps/007/annotated.png",
+          "markup": "routes/001/steps/007/markup.json",
+          "meta": {
+            "browser": {
+              "url": "https://www.facebook.com/messages/new?initial_e2ee_toggle_position=true",
+              "title": "Messenger | Facebook",
+              "pagePath": "routes/001/steps/007/page.html"
+            }
+          }
+        },
+        {
+          "index": 8,
+          "stepId": "5436ad69-c4bc-4aea-88dc-de5540c34d58",
+          "title": "添加图片",
+          "description": "可选：若任务配置了图片，则附加到消息；未配置则跳过。",
+          "capturedAt": 1791973279,
+          "screenshot": "routes/001/steps/008/screenshot.png",
+          "annotatedScreenshot": "routes/001/steps/008/annotated.png",
+          "markup": "routes/001/steps/008/markup.json",
+          "meta": {
+            "browser": {
+              "url": "https://www.facebook.com/messages/new?initial_e2ee_toggle_position=true",
+              "title": "Messenger | Facebook",
+              "pagePath": "routes/001/steps/008/page.html"
+            }
+          }
+        },
+        {
+          "index": 9,
+          "stepId": "124240cc-9764-4166-9b1d-23fb42040a93",
+          "title": "发送",
+          "description": "点击发送按钮，将文案（及可选图片）发出；发出后输入框清空或消息出现在会话中即视为成功。",
+          "capturedAt": 1791973335,
+          "screenshot": "routes/001/steps/009/screenshot.png",
+          "annotatedScreenshot": "routes/001/steps/009/annotated.png",
+          "markup": "routes/001/steps/009/markup.json",
+          "meta": {
+            "browser": {
+              "url": "https://www.facebook.com/messages/new?initial_e2ee_toggle_position=true",
+              "title": "Messenger | Facebook",
+              "pagePath": "routes/001/steps/009/page.html"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

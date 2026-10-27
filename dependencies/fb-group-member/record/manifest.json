@@ -1,0 +1,73 @@
+{
+  "version": 2,
+  "uuid": "49b660d6-2be6-47d1-9866-44a3813c9b9c",
+  "name": "Facebook小组成员采集",
+  "description": "根据指定的小组主页地址，采集小组成员主页地址",
+  "deviceType": "browser",
+  "socialCategoryId": 1,
+  "deviceId": 0,
+  "createdAt": 1787294343,
+  "updatedAt": 1792390486,
+  "routes": [
+    {
+      "index": 1,
+      "routeId": "30b1dacf-4dbd-453d-ad19-ab293d0af6bd",
+      "name": "Facebook主页地址采集",
+      "description": "",
+      "entryUrl": "https://www.facebook.com/groups/290114757140088",
+      "steps": [
+        {
+          "index": 1,
+          "stepId": "9c5729b2-1863-4fd6-a03f-2c5f167ff583",
+          "title": "访问小组主页地址",
+          "description": "找到小组成员Tab选项点击",
+          "capturedAt": 1787294469,
+          "screenshot": "routes/001/steps/001/screenshot.png",
+          "annotatedScreenshot": "routes/001/steps/001/annotated.png",
+          "markup": "routes/001/steps/001/markup.json",
+          "meta": {
+            "browser": {
+              "url": "https://www.facebook.com/groups/290114757140088",
+              "title": "(9) iOS | Facebook",
+              "pagePath": "routes/001/steps/001/page.html"
+            }
+          }
+        },
+        {
+          "index": 2,
+          "stepId": "27626e3b-110a-4140-990d-dd852055e738",
+          "title": "等待进入小组成员Tab页面",
+          "description": "此时URL地址都是以/members结尾（所以其实可以根据用户提供的主页地址解析出小组ID，直接拼接出小组成员列表页地址访问）",
+          "capturedAt": 1787294552,
+          "screenshot": "routes/001/steps/002/screenshot.png",
+          "annotatedScreenshot": "routes/001/steps/002/annotated.png",
+          "markup": "routes/001/steps/002/markup.json",
+          "meta": {
+            "browser": {
+              "url": "https://www.facebook.com/groups/290114757140088/members",
+              "title": "(9) iOS | Facebook",
+              "pagePath": "routes/001/steps/002/page.html"
+            }
+          }
+        },
+        {
+          "index": 3,
+          "stepId": "33a0d981-682f-41e2-8554-08bc6f21d6e2",
+          "title": "采集小组成员",
+          "description": "持续滚动页面，采集用户主页地址，用户名称，以及最近加入时间（需要设置最大采集数量，满足最大采集数量后结束，因为一般小组成员数量很多，没必要采集那么多，一般是采集最近加入小组的用户）",
+          "capturedAt": 1787294702,
+          "screenshot": "routes/001/steps/003/screenshot.png",
+          "annotatedScreenshot": "routes/001/steps/003/annotated.png",
+          "markup": "routes/001/steps/003/markup.json",
+          "meta": {
+            "browser": {
+              "url": "https://www.facebook.com/groups/290114757140088/members",
+              "title": "(9) iOS | Facebook",
+              "pagePath": "routes/001/steps/003/page.html"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
