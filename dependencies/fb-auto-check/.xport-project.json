@@ -2,7 +2,7 @@
   "format": "xport-github-project",
   "formatVersion": 1,
   "kind": "automation",
-  "exportedAt": 1793089650,
+  "exportedAt": 1793238571,
   "project": {
     "label": "fb-auto-check",
     "name": "Facebook账号巡检",

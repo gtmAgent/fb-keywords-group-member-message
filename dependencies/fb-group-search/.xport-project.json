@@ -2,7 +2,7 @@
   "format": "xport-github-project",
   "formatVersion": 1,
   "kind": "automation",
-  "exportedAt": 1793089652,
+  "exportedAt": 1793238573,
   "project": {
     "label": "fb-group-search",
     "name": "Facebook小组采集",
